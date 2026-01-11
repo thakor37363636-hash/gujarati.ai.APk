@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gujarati AI App</title>
+
+<style>
+body{font-family:Arial;background:#f4f6f8;margin:0;padding:15px}
+h1{color:#00695c}
+section{background:#fff;padding:15px;margin-bottom:15px;border-radius:10px}
+button{padding:10px 15px;font-size:16px;margin-top:8px}
+textarea,input{width:100%;margin-top:8px;padding:8px}
+iframe{width:100%;height:300px;border-radius:10px;border:none}
+</style>
+</head>
+
+<body>
+
+<h1>🤖 Gujarati All-in-One AI App</h1>
+
+<section>
+<h3>🗣️ લખાણ → અવાજ (Text to Speech)</h3>
+<textarea id="tts">નમસ્તે, હું તમારી Gujarati AI એપ છું</textarea>
+<button onclick="speak()">અવાજમાં સાંભળો</button>
+</section>
+
+<section>
+<h3>🎤 બોલો → લખાણ (Speech to Text)</h3>
+<button onclick="listen()">બોલો</button>
+<textarea id="stt"></textarea>
+</section>
+
+<section>
+<h3>📷 Photo Editing AI</h3>
+<iframe src="https://www.photopea.com/"></iframe>
+</section>
+
+<section>
+<h3>🎬 Video Editing AI</h3>
+<p>Free tools:</p>
+<a href="https://clipchamp.com/" target="_blank">Clipchamp</a><br>
+<a href="https://www.flexclip.com/" target="_blank">FlexClip</a>
+</section>
+
+<section>
+<h3>💬 AI Chat (Demo)</h3>
+<textarea placeholder="પ્રશ્ન લખો..."></textarea>
+<button onclick="alert('Real AI માટે API જરૂરી છે')">જવાબ મેળવો</button>
+</section>
+
+<script>
+function speak(){
+ let msg=new SpeechSynthesisUtterance();
+ msg.text=document.getElementById("tts").value;
+ msg.lang="gu-IN";
+ speechSynthesis.speak(msg);
+}
+
+function listen(){
+ let r=new (window.SpeechRecognition||window.webkitSpeechRecognition)();
+ r.lang="gu-IN";
+ r.onresult=e=>{
+ document.getElementById("stt").value=e.results[0][0].transcript;
+ };
+ r.start();
+}
+</script>
+
+</body>
+</html>
